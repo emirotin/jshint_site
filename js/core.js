@@ -1,11 +1,19 @@
+// globals
+var ace, JSHINT;
+
 $(document).ready(function () {
+    var editor = ace.edit("code"),
+        JavaScriptMode = require("ace/mode/javascript").Mode;
+    editor.setTheme("ace/theme/textmate");
+    editor.getSession().setMode(new JavaScriptMode());
+    
     function onPass() {
         var output   = $("div.output.wrapper"),
             template = $("#passOutput");
 
         output.removeClass("fail");
         output.addClass("pass");
-        output.html(template.tmpl(JSHINT.data()));
+        output.html(template.tmpl(JSHINT.data()));        
     }
 
     function onFail() {
@@ -16,6 +24,12 @@ $(document).ready(function () {
         output.addClass("fail");
 
         output.html(template.tmpl(JSHINT.data()));
+        
+        $('.line-number').click(function () {
+            var num = parseInt($(this).data('line-number'), 10);
+            editor.gotoLine(num);
+        });
+
     }
 
     function onEmpty() {
@@ -27,7 +41,7 @@ $(document).ready(function () {
 
     $("div.code button").click(function () {
         var options = {},
-            code    = $("div.code textarea").val(),
+            code    = editor.getSession().getValue(),
             output  = $("div.sidebar li[data-target=output] a");
 
         // Get checked options

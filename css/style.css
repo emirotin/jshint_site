@@ -160,13 +160,20 @@ div.code h1 {
   margin-bottom: 10px;
 }
 
-div.code textarea {
+div.code #code {
+  position: relative;
   width: 98%;
   height: 37em;
   border: 0;
   border-radius: 5px;
-  padding: 1%;
-  font-family: "Inconsolata", Arial, Serif;
+  background-color: white;
+  overflow: hidden;
+}
+
+.line-number {
+  border-bottom: 1px dashed;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 div.code div.buttons {

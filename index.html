@@ -22,6 +22,9 @@
     <script src="js/jquery.dev.js"></script>
     <script src="js/jquery.tmpl.js"></script>
     <script src="jshint.js"></script>
+    <script src="js/ace.js"></script>
+    <script src="js/ace-theme.js"></script>
+    <script src="js/ace-js-mode.js"></script>
     <script src="js/core.js"></script>
     -->
   </head>
@@ -51,7 +54,7 @@
     <section id="applyarea">
       <div class="code">
         <h1>Your Code</h1>
-        <textarea placeholder="// Your code goes here" id="code"></textarea>
+        <pre id="code">// Your code goes here</pre>
         <div class="buttons">
           <button>JSHint</button>
         </div>
@@ -515,7 +518,10 @@
         {{each(i, error) errors}}
           {{if error}}
             <li>
-              <p><strong>Line ${error.line}</strong><code>${error.evidence}</code></p>
+              <p>
+                <span class="line-number" data-line-number="${error.line}" title="Click to go to the line">Line ${error.line}</span>
+                  <code>${error.evidence}</code>
+              </p>
               <p>${error.reason}</p>
             </li>
           {{/if}}
