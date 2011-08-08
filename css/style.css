@@ -167,7 +167,6 @@ div.code #code {
   border: 0;
   border-radius: 5px;
   background-color: white;
-  overflow: hidden;
 }
 
 .line-number {
